@@ -3,14 +3,22 @@
   "version": "0.0.1",
   "description": "Eztrak UI library is for Eztrak project written in react Libraries bundled with Rollup.js to commonJs and ES6 Modules and Storybook.",
   "author": "irfan",
+  "keywords": [
+    "ui",
+    "react",
+    "storybook",
+    "rollup",
+    "typescript"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/thisisirfan/eztrak-ui.git"
   },
-  "homepage": "",
+  "homepage": "https://github.com/thisisirfan/eztrak-ui#readme",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/thisisirfan"
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
   },
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -21,7 +29,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=development BABEL_ENV=development yarn storybook",
-    "build": "rimraf dist && NODE_ENV=production BABEL_ENV=production rollup -c",
+    "build": "rimraf dist && NODE_ENV=production BABEL_ENV=production rollup -c -w",
     "lint": "yarn check-types && yarn eslint && yarn stylelint",
     "lint:fix": "yarn eslint:fix && yarn stylelint:fix",
     "eslint": "eslint . --report-unused-disable-directives --max-warnings 0",
@@ -83,6 +91,7 @@
     "prettier": "3.4.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^7.0.2",
     "regenerator-runtime": "^0.14.1",
     "rimraf": "^6.0.1",
     "rollup": "^4.28.0",
