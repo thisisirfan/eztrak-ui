@@ -1,8 +1,11 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import { Sidebar, ISidebarProps } from './Sidebar';
+import { Sidebar } from './Sidebar';
+import { ISidebarProps } from './ISidebarProps';
+
 import { FaHome, FaUser, FaCog, FaChevronLeft, FaChevronRight, FaDoorOpen, FaDashcube } from 'react-icons/fa';
 
 export default {
@@ -11,9 +14,10 @@ export default {
 } as Meta;
 
 const Template: StoryFn<ISidebarProps> = (args) => (
-  <MemoryRouter>
+  
+  <Router>
     <Sidebar {...args} />
-  </MemoryRouter>
+  </Router>
 );
 
 export const Default = Template.bind({});

@@ -1,36 +1,9 @@
-import React, { HTMLAttributes, FC, ReactNode, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Link } from "react-router-dom";
 import cx from 'clsx';
-
 import './Sidebar.scss';
-
-export interface ISidebarItem {
-  name: string;
-  icon?: ReactNode;
-  link: string;
-  subItems?: ISidebarItem[];
-}
-
-export interface ISidebarProps extends HTMLAttributes<HTMLDivElement> {
-  header?: ReactNode;
-  children?: ReactNode;
-  footer?: ReactNode;
-  items?: ISidebarItem[];
-  logoUrl?: string;
-  logoAltText?: string;
-  collapseButtonText?: ReactNode;
-  expandButtonText?: ReactNode;
-  location?: {
-    pathname?: string;
-  };
-  classNames?: {
-    logoSection?: string;
-    navSection?: string;
-    groupItem?: string;
-    subItem?: string;
-    collapseButton?: string;
-  };
-}
+import { ISidebarProps } from './ISidebarProps';
+import { ISidebarItem } from './ISidebarItem';
 
 export const Sidebar: FC<ISidebarProps> = ({
   className,
@@ -106,7 +79,7 @@ export const Sidebar: FC<ISidebarProps> = ({
                 </div>
                 {activeGroup === item.name && !collapsed && (
                   <div className={cx("ml-8 mt-2", classNames.subItem)}>
-                    {item.subItems.map((subItem, subIndex) => (
+                    {item.subItems.map((subItem: ISidebarItem, subIndex: number) => (
                       <Link
                         to={subItem.link}
                         key={`${index}-${subIndex}`}

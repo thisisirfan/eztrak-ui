@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardProps } from './Card.types';
 
-const Card: React.FC<CardProps> = ({ 
+export const Card: React.FC<CardProps> = ({ 
   title, 
   content, 
   icon, 
@@ -23,5 +23,3 @@ const Card: React.FC<CardProps> = ({
     </div>
   );
 };
-
-export default Card;

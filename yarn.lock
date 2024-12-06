@@ -5460,8 +5460,8 @@ __metadata:
     vitest: "npm:^2.1.6"
   peerDependencies:
     clsx: 2.x
-    react: 18.x
-    react-dom: 18.x
+    react: ">=17.0.0 <19.0.0"
+    react-dom: ">=17.0.0 <19.0.0"
   languageName: unknown
   linkType: soft
 

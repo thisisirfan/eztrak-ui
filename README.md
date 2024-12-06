@@ -1,6 +1,6 @@
 # Getting started
 
-Getting started with this repo.
+Getting started with this Eztrak component UI library.
 
 #### Familiar with Git?
 
@@ -11,6 +11,16 @@ yarn install
 ```
 
 yarn install
+
+Alternatively, you can use npm:
+
+```
+git clone git@github.com:thisisirfan/eztrak-ui.git
+cd eztrak-ui
+npm install
+```
+
+npm install
 ```
 
 ## Developing
@@ -19,6 +29,12 @@ To start the developing run :
 
 ```
 yarn start
+```
+
+or
+
+```
+npm start
 ```
 
 This will build a version of your library, run the watcher and also run Storybook.
@@ -51,6 +67,15 @@ or (if automatic fixing is possible)
 yarn lint:fix
 ```
 
+or
+
+```
+npm run lint
+```
+or (if automatic fixing is possible)
+```
+npm run lint:fix
+```
 
 ## Testing
 
@@ -60,12 +85,24 @@ You can refer to `Button.test.js` as an example.
 yarn test
 ```
 
+or
+
+```
+npm test
+```
+
 ## Publishing your library to NPM
 
 To release your library to NPM or your private Registry, make sure you have an active account at [NPM](https://www.npmjs.com/), your `.npmrc` file is correctly setup and the registry url at publishConfig in `package.json` file is set to your repository url, then:
 
 ```
 yarn release
+```
+
+or
+
+```
+npm run release
 ```
 
 ## Storybook
@@ -80,25 +117,48 @@ Make sure the homepage url in `package.json` file is set to your githup pages ur
 yarn deploy
 ```
 
+or
+
+```
+npm run deploy
+```
+
 ## Scripts
 
 - `yarn start` : Only serves Storybook.
+- `npm start` : Only serves Storybook.
 - `yarn build` : Builds your library (build can be found in `dist` folder).
+- `npm run build` : Builds your library (build can be found in `dist` folder).
 - `yarn storybook:build` : Builds the static Storybook in case you want to deploy it.
+- `npm run storybook:build` : Builds the static Storybook in case you want to deploy it.
 - `yarn test` : Runs the tests.
+- `npm test` : Runs the tests.
 - `yarn test:coverage`: Runs the test and shows the coverage.
+- `npm run test:coverage`: Runs the test and shows the coverage.
 - `yarn lint` : Runs the linter, Typescript typecheck and stylelint.
+- `npm run lint` : Runs the linter, Typescript typecheck and stylelint.
 - `yarn lint:fix` : Runs the linter, Typescript typecheck and stylelint and fixes automatic fixable issues.
+- `npm run lint:fix` : Runs the linter, Typescript typecheck and stylelint and fixes automatic fixable issues.
 - `yarn eslint`: Runs only the JavaScript linter.
+- `npm run eslint`: Runs only the JavaScript linter.
 - `yarn eslint:fix`: Runs only the JavaScript linter and fixes automatic fixable issues.
+- `npm run eslint:fix`: Runs only the JavaScript linter and fixes automatic fixable issues.
 - `yarn stylelint`: Runs only the style linter.
+- `npm run stylelint`: Runs only the style linter.
 - `yarn stylelint:fix`: Runs only the style linter and fixes automatic fixable issues.
+- `npm run stylelint:fix`: Runs only the style linter and fixes automatic fixable issues.
 - `yarn check-types`: Runs typescript type checker.
+- `npm run check-types`: Runs typescript type checker.
 - `yarn ci`: Runs Linting, tests and type checker all together.
+- `npm run ci`: Runs Linting, tests and type checker all together.
 - `yarn release` : Publishes your Library on NPM or your private Registry (depending on your config in your `.npmrc` file).
+- `npm run release` : Publishes your Library on NPM or your private Registry (depending on your config in your `.npmrc` file).
 - `yarn storybook`: Same as yarn start, to serve storybook.
+- `npm run storybook`: Same as npm start, to serve storybook.
 - `yarn storybook:build`: Generates the build for storybook in `storybook-static` folder, that can be deployed wherever you need.
+- `npm run storybook:build`: Generates the build for storybook in `storybook-static` folder, that can be deployed wherever you need.
 - `yarn storybook:deploy`: Builds and deploys Storybook to GitHub Pages.
+- `npm run storybook:deploy`: Builds and deploys Storybook to GitHub Pages.
 
 ## Resources
 
