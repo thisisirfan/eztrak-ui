@@ -21,4 +21,6 @@ export interface ISidebarProps extends HTMLAttributes<HTMLDivElement> {
     subItem?: string;
     collapseButton?: string;
   };
+  onCollapseChange?: (collapsed: boolean) => void;
+  isCollapsed?: boolean;
 }

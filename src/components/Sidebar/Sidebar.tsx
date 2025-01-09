@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import cx from 'clsx';
 import './Sidebar.scss';
@@ -17,11 +17,19 @@ export const Sidebar: FC<ISidebarProps> = ({
   expandButtonText = "➡️",
   location = { pathname: '' },
   classNames = {},
+  onCollapseChange,
+  isCollapsed = false,
   ...rest
 }) => {
 
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const [collapsed, setCollapsed] = useState<boolean>(isCollapsed);
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (onCollapseChange) {
+      onCollapseChange(collapsed);
+    }
+  }, [collapsed, onCollapseChange]);
 
   const toggleGroup = (group: string) => {
     setActiveGroup(activeGroup === group ? '' : group);
@@ -33,7 +41,7 @@ export const Sidebar: FC<ISidebarProps> = ({
 
   return (
     <div
-      className={`flex flex-col bg-gray-100 shadow h-screen overflow-hidden ${className} ${collapsed ? "w-20 w-max-20 justify-center items-center" : " w-48 w-max-48"
+      className={`flex flex-col bg-gray-100 shadow h-screen overflow-hidden ${className} ${collapsed ? "w-20 w-max-20 justify-center items-center collapsed" : " w-48 w-max-48"
         } transition-all duration-100`}
       {...rest}
     >

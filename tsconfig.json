@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2023",
     "module": "esnext",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "sourceMap": true,
     "outDir": "dist",
     "strict": true,
@@ -31,7 +31,7 @@
     "downlevelIteration": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
-    "types": ["@testing-library/jest-dom"],
+    "types": ["react", "@testing-library/jest-dom"],
     "useDefineForClassFields": true,
   },
   "include": ["src", "*.tsx", "*.ts", "eslint.config.js"],
