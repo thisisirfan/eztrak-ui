@@ -1,6 +1,6 @@
 {
   "name": "eztrak-ui",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Eztrak UI library is for Eztrak project written in react Libraries bundled with Rollup.js to commonJs and ES6 Modules and Storybook.",
   "author": "irfan",
   "keywords": [

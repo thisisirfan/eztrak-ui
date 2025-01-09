@@ -14,7 +14,7 @@ export const Header: React.FC<HeaderProps> = ({
             <div
                 className={`flex flex-row justify-between items-center ${containerClass}`}
             >
-                {breadcrumbs && <div>{breadcrumbs}</div>}
+                {breadcrumbs && <div className="breadcrumbs-wraper">{breadcrumbs}</div>}
                 {children}
             </div>
         </div>
