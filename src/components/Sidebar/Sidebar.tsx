@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import cx from 'clsx';
 import './Sidebar.scss';
 import { ISidebarProps } from './ISidebarProps';
@@ -7,6 +7,8 @@ import { ISidebarItem } from './ISidebarItem';
 
 export const Sidebar: FC<ISidebarProps> = ({
   className,
+  sideCollapseWidth = "w-20",
+  sidebarWidth = "w-48",
   header,
   children,
   footer,
@@ -15,15 +17,17 @@ export const Sidebar: FC<ISidebarProps> = ({
   logoAltText = "Logo",
   collapseButtonText = "⬅️ Collapse",
   expandButtonText = "➡️",
-  location = { pathname: '' },
+  // location = { pathname: '' },
   classNames = {},
   onCollapseChange,
   isCollapsed = false,
   ...rest
 }) => {
 
+  const location = useLocation();
   const [collapsed, setCollapsed] = useState<boolean>(isCollapsed);
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
+  const [activeLink, setActiveLink] = useState<string>(location.pathname);
 
   useEffect(() => {
     if (onCollapseChange) {
@@ -31,18 +35,22 @@ export const Sidebar: FC<ISidebarProps> = ({
     }
   }, [collapsed, onCollapseChange]);
 
+  useEffect(() => {
+    setActiveLink(location.pathname);
+  }, [location]);
+
   const toggleGroup = (group: string) => {
     setActiveGroup(activeGroup === group ? '' : group);
   };
 
   const isActive = (link: string) => {
-    return typeof location === 'object' && location.pathname === link;
+    return activeLink === link;
   };
 
   return (
     <div
-      className={`flex flex-col bg-gray-100 shadow h-screen overflow-hidden ${className} ${collapsed ? "w-20 w-max-20 justify-center items-center collapsed" : " w-48 w-max-48"
-        } transition-all duration-100`}
+      className={`flex flex-col h-screen overflow-hidden ${collapsed ? `${sideCollapseWidth} justify-center items-center collapsed` : `${sidebarWidth}`
+        } transition-all duration-100 ${className}`}
       {...rest}
     >
       {/* Logo Section */}
@@ -63,15 +71,12 @@ export const Sidebar: FC<ISidebarProps> = ({
               <div key={index} className="my-2">
                 <div
                   onClick={() => toggleGroup(item.name)}
-                  className={`flex items-center justify-between p-4 hover:bg-gray-200 cursor-pointer text-secondary hover:text-primary ${isActive(item.link)
-                    ? "bg-gray-200 border-l-4 border-primary"
-                    : ""
-                    }`}
+                  className={`flex cursor-pointer ${classNames?.navItem}`}
                 >
                   <div className="flex items-center space-x-4">
-                    <span className="text-orange-600">{item.icon}</span>
+                    <span className={classNames?.navItemText}>{item.icon}</span>
                     {!collapsed && (
-                      <span className="text-gray-800 font-semibold">
+                      <span className={classNames?.navItemText}>
                         {item.name}
                       </span>
                     )}
@@ -86,13 +91,13 @@ export const Sidebar: FC<ISidebarProps> = ({
                   )}
                 </div>
                 {activeGroup === item.name && !collapsed && (
-                  <div className={cx("ml-8 mt-2", classNames.subItem)}>
+                  <div className={cx("collapse-btn-wrapper ml-8 mt-2", classNames.subItem)}>
                     {item.subItems.map((subItem: ISidebarItem, subIndex: number) => (
                       <Link
                         to={subItem.link}
                         key={`${index}-${subIndex}`}
-                        className={`flex items-center space-x-4 p-4 hover:bg-gray-200 rounded ${isActive(item.link) ? "bg-gray-200" : ""
-                          }`}
+                        className={`flex ${classNames?.navItem} ${isActive(subItem.link) ? 'active' : ''}`}
+                        onClick={() => setActiveLink(subItem.link)}
                       >
                         {subItem.name}
                       </Link>
@@ -108,13 +113,11 @@ export const Sidebar: FC<ISidebarProps> = ({
             <Link
               to={item.link}
               key={index}
-              className={`flex items-center text-secondary space-x-4 p-4 hover:bg-gray-200 hover:text-primary ${isActive(item.link)
-                ? "bg-gray-200 border-l-4 border-primary"
-                : ""
-                }`}
+              className={`flex ${classNames?.navItem} ${isActive(item.link) ? 'active' : ''}`}
+              onClick={() => setActiveLink(item.link)}
             >
-              <span className="text-orange-600">{item.icon}</span>
-              {!collapsed && <span className="text-gray-800">{item.name}</span>}
+              <span className={classNames.navItemText ?? 'text-orange-600'}>{item.icon}</span>
+              {!collapsed && <span className={classNames.navItemText}>{item.name}</span>}
             </Link>
           );
         })}
@@ -123,13 +126,13 @@ export const Sidebar: FC<ISidebarProps> = ({
 
       <button
         onClick={() => setCollapsed(!collapsed)}
-        className={cx("p-4 bg-gray-300 hover:bg-gray-400 border-t border-gray-300", classNames.collapseButton)}
+        className={cx("", classNames.collapseButton) ?? 'p-4 border-t border-gray-300'}
       >
         {collapsed ? expandButtonText : collapseButtonText}
       </button>
 
       {/* Footer Section */}
-      {footer && <div className="p-4 border-t border-gray-300">{footer}</div>}
+      {footer && <div className={classNames?.footer ?? 'p-4 border-t border-gray-300'}>{footer}</div>}
     </div>
   );
 };

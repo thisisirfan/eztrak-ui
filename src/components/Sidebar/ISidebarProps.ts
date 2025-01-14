@@ -11,6 +11,8 @@ export interface ISidebarProps extends HTMLAttributes<HTMLDivElement> {
   logoAltText?: string;
   collapseButtonText?: ReactNode;
   expandButtonText?: ReactNode;
+  sideCollapseWidth?: string;
+  sidebarWidth?: string;
   location?: {
     pathname?: string;
   };
@@ -20,6 +22,9 @@ export interface ISidebarProps extends HTMLAttributes<HTMLDivElement> {
     groupItem?: string;
     subItem?: string;
     collapseButton?: string;
+    navItemText?: string;
+    footer?: string;
+    navItem?: string;
   };
   onCollapseChange?: (collapsed: boolean) => void;
   isCollapsed?: boolean;

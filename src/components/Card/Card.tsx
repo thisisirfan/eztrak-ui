@@ -6,13 +6,13 @@ export const Card: React.FC<CardProps> = ({
   content, 
   icon, 
   onClick, 
-  containerClassName = '', 
+  containerClassName = 'shadow p-6', 
   iconClassName = '', 
   titleClassName = '', 
   contentClassName = '' 
 }) => {
   return (
-    <div className={`border-secondary p-6 shadow transform hover:bg-gray-50 transition duration-300 cursor-pointer select-none ${containerClassName}`} onClick={onClick}>
+    <div className={`transform  transition duration-300 cursor-pointer select-none ${containerClassName}`} onClick={onClick}>
       <div className="flex space-x-4">
         <span className={`text-primary text-3xl ${iconClassName}`}>{icon}</span>
         <div>
