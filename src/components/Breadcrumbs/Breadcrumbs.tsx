@@ -41,12 +41,12 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         const isLast = index === pathnames.length - 1;
         const title = getTitle(to);
         return isLast ? (
-          <>
+          <React.Fragment key={to}>
             <span className={separatorClassName}>/</span>
             <span key={to} className={activeClassName}>
               {title}
             </span>
-          </>
+          </React.Fragment>
         ) : (
           <React.Fragment key={to}>
             <span className={separatorClassName}>/</span>

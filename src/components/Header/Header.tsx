@@ -3,7 +3,7 @@ import { HeaderProps } from './Header.types';
 
 export const Header: React.FC<HeaderProps> = ({
     title = "Header",
-    className = "flex-col",
+    className = "p-2 gap-2 flex-col",
     containerClass = "",
     breadcrumbs = "",
     titleStyle = "text-4xl h-fit font-bold",
@@ -11,7 +11,7 @@ export const Header: React.FC<HeaderProps> = ({
     children
 }) => {
     return (
-        <div className={`p-2 flex gap-2 ${className}`}>
+        <div className={`flex ${className}`}>
             <div className='title-wrapper'>
                 <h1 className={titleStyle}>{title}</h1>
                 {breadcrumbs && <div className={`breadcrumbs-wraper ${breadcrumbsStyle}`}>{breadcrumbs}</div>}
