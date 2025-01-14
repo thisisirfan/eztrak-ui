@@ -7,4 +7,6 @@ export interface HeaderProps {
     breadcrumbs?: React.ReactNode;
     className?: string;
     containerClass?: string;
+    titleStyle?: string;
+    breadcrumbsStyle?: string;
 }

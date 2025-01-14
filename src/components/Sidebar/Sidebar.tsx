@@ -44,7 +44,7 @@ export const Sidebar: FC<ISidebarProps> = ({
   };
 
   const isActive = (link: string) => {
-    return activeLink === link;
+    return location.pathname.startsWith(link);
   };
 
   return (
