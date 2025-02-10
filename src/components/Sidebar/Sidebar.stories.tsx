@@ -31,6 +31,10 @@ Default.args = {
       link: '/dashboard',
     },
     {
+      name: 'Export',
+      component: () => <div onClick={()=>alert('hello world')}>Export</div>,
+    },
+    {
       name: 'Home',
       icon: <FaHome />,
       link: '/home',
@@ -40,8 +44,8 @@ Default.args = {
       icon: <FaUser />,
       link: '/user',
       subItems: [
-        { name: 'Profile', link: '/user/profile' },
-        { name: 'Settings', link: '/user/settings' },
+        { name: 'Profile', link: '/user/profile', icon: <FaUser /> },
+        { name: 'Settings', link: '/user/settings', icon: <FaCog /> },
       ],
     },
     {

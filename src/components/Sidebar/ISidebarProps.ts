@@ -25,7 +25,9 @@ export interface ISidebarProps extends HTMLAttributes<HTMLDivElement> {
     navItemText?: string;
     footer?: string;
     navItem?: string;
+    itemDropdown?: string;
   };
+  itemDropdownIcon?: ReactNode;
   onCollapseChange?: (collapsed: boolean) => void;
   isCollapsed?: boolean;
 }

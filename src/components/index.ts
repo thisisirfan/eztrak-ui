@@ -6,4 +6,5 @@ export * from './Header';
 export * from './Loader';
 export * from './Heading';
 export * from './Breadcrumbs';
+export * from './Tooltip';
 // export * from './Form';

@@ -1,9 +1,10 @@
 
-import { ReactNode } from 'react';
-
 export interface ISidebarItem {
   name: string;
-  icon?: ReactNode;
-  link: string;
+  link?: string;
+  icon?: React.ReactNode;
   subItems?: ISidebarItem[];
+  component?: React.ComponentType;
+  tooltip?: string;
+  tooltipPlacement?: 'top' | 'right' | 'bottom' | 'left';
 }
