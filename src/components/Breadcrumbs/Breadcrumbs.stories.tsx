@@ -12,6 +12,7 @@ export default {
     linkClassName: { control: "text" },
     separatorClassName: { control: "text" },
     activeClassName: { control: "text" },
+    customTitles: { control: "object" },
   },
 } as Meta;
 
@@ -33,4 +34,5 @@ Default.args = {
   linkClassName: "",
   separatorClassName: "",
   activeClassName: "font-bold whitespace-pre",
+  customTitles: { "profile": "User Profile" },
 };

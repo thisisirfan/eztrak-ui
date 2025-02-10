@@ -10,7 +10,7 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button: FC<IButtonProps> = ({ onClick, disabled, className, children, ...rest }) => (
   <button
     type="button"
-    className={cx('button ', className, { 'button--dsiabled': disabled })}
+    className={cx('', className, { 'button--dsiabled': disabled })}
     onClick={onClick}
     disabled={disabled}
     {...rest}

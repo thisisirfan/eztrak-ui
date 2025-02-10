@@ -10,4 +10,5 @@ export interface BreadcrumbsProps {
     linkClassName?: string;
     separatorClassName?: string;
     activeClassName?: string;
+    customTitles?: { [key: string]: string };
 }

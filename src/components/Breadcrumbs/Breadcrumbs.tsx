@@ -8,6 +8,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   linkClassName = "",
   separatorClassName = "",
   activeClassName = "font-bold whitespace-pre",
+  customTitles = {},
 }) => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
@@ -28,9 +29,35 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
     return null;
   };
 
-  const getTitle = (pathname: string): string => {
+  const getLastParam = (str: string) => {
+    return str.endsWith('/')
+      ? str.slice(0, -1).split('/').pop()
+      : str.split('/').pop();
+  }
+
+
+  const checkMatches = (url: string, matchList: { [key: string]: string }) => {
+    const segments = url.split('/');
+    return segments.find(segment => Object.keys(matchList).includes(segment)) || '';
+  }
+
+
+  const getTitle = (pathname: string) => {
     const match = findRoute(pathname, routes);
-    return match && match.title ? match.title : pathname;
+    if (match && match.title) {
+      return match.title;
+    }
+
+    const paramMatches = checkMatches(pathname, customTitles);
+    if (paramMatches && customTitles[paramMatches]) {
+      return customTitles[paramMatches];
+    }
+
+    const lastParamPath = getLastParam(pathname);
+    if (lastParamPath)
+      return lastParamPath;
+
+    return pathname;
   };
 
   return (
