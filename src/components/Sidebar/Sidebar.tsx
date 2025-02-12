@@ -28,8 +28,9 @@ export const Sidebar: FC<ISidebarProps> = ({
 
   const location = useLocation();
   const [collapsed, setCollapsed] = useState<boolean>(isCollapsed);
-  const [activeGroup, setActiveGroup] = useState<string | null>(null);
+  // const [activeGroup, setActiveGroup] = useState<string | null>(null);
   const [activeLink, setActiveLink] = useState<string>(location.pathname);
+  const [subItemsCollapsed, setSubItemsCollapsed] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     if (onCollapseChange) {
@@ -42,7 +43,10 @@ export const Sidebar: FC<ISidebarProps> = ({
   }, [location]);
 
   const toggleGroup = (group: string) => {
-    setActiveGroup(activeGroup === group ? '' : group);
+    setSubItemsCollapsed(prevState => ({
+      ...prevState,
+      [group]: !prevState[group]
+    }));
   };
 
   const isActive = (link: string) => {
@@ -70,10 +74,10 @@ export const Sidebar: FC<ISidebarProps> = ({
           if (item.subItems) {
             // Render collapsible group
             return (
-              <div key={index} className="my-2">
+              <div key={index} className={`my-2 ${item?.subItems && 'has-sub-items'}`}>
                 <div
                   onClick={() => toggleGroup(item.name)}
-                  className={`flex cursor-pointer ${classNames?.navItem}`}
+                  className={`flex cursor-pointer dropdown-title-wrapper ${classNames?.navItem ?? ''}`}
                 >
                   <ToolTip text={item.tooltip || item.name} key={index} placement={item.tooltipPlacement || 'top'}>
                     <div className="flex items-center space-x-4">
@@ -86,18 +90,16 @@ export const Sidebar: FC<ISidebarProps> = ({
                     </div>
                   </ToolTip>
                   {!collapsed && (
-
                     <span
-                      className={`transform transition-transform ${activeGroup === item.name ? "rotate-180" : "rotate-0"
+                      className={`transform transition-transform ${subItemsCollapsed[item.name] ? "rotate-180" : "rotate-0"
                         }`}
                     >
                       {itemDropdownIcon}
                     </span>
-
                   )}
                 </div>
-                {activeGroup === item.name && !collapsed && (
-                  <div className={cx("collapse-btn-wrapper ml-8 mt-2", classNames.subItem)}>
+                {subItemsCollapsed[item.name] && (
+                  <div className={cx("collapse-btn-wrapper", classNames.subItem)}>
                     {item.subItems.map((subItem: ISidebarItem, subIndex: number) => (
                       subItem.component ? (
                         <subItem.component key={`${index}-${subIndex}`} />
@@ -106,7 +108,7 @@ export const Sidebar: FC<ISidebarProps> = ({
                           <Link
                             to={subItem.link || '#'}
                             key={`${index}-${subIndex}`}
-                            className={`flex ${classNames?.navItem ?? ''} ${isActive(subItem?.link ?? '') ? 'active' : ''}`}
+                            className={`flex ${classNames?.navItem ?? ''} ${isActive(subItem?.link ?? '') ? 'active' : ''} ${item?.itemClassName}`}
                             onClick={() => subItem.link && setActiveLink(subItem.link || '')}
                             title={subItem.tooltip || subItem.name} // Add tooltip here
                           >
@@ -131,7 +133,7 @@ export const Sidebar: FC<ISidebarProps> = ({
                 <Link
                   to={item.link || '#'}
                   key={index}
-                  className={`flex ${classNames?.navItem ?? ''} ${isActive(item.link || '') ? 'active' : ''}`}
+                  className={`flex ${classNames?.navItem ?? ''} ${isActive(item.link || '') ? 'active' : ''} ${item?.itemClassName}`}
                   onClick={() => setActiveLink(item.link || '')}
                   title={item.tooltip || item.name}
                 >

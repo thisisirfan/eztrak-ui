@@ -7,4 +7,5 @@ export interface ISidebarItem {
   component?: React.ComponentType;
   tooltip?: string;
   tooltipPlacement?: 'top' | 'right' | 'bottom' | 'left';
+  itemClassName?: string;
 }

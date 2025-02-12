@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { ISidebarProps } from './ISidebarProps';
 
-import { FaHome, FaUser, FaCog, FaChevronLeft, FaChevronRight, FaDoorOpen, FaDashcube } from 'react-icons/fa';
+import { FaHome, FaUser, FaCog, FaChevronLeft, FaChevronRight, FaDoorOpen, FaDashcube, FaAddressCard, Fa500Px, FaDocker, FaHeart } from 'react-icons/fa';
 
 export default {
   title: 'Sidebar',
@@ -44,18 +44,13 @@ Default.args = {
       icon: <FaUser />,
       link: '/user',
       subItems: [
-        { name: 'Profile', link: '/user/profile', icon: <FaUser /> },
-        { name: 'Settings', link: '/user/settings', icon: <FaCog /> },
+        { name: 'Profile', link: '/user/profile', icon: <FaAddressCard /> },
+        { name: 'Settings', link: '/user/settings', icon: <Fa500Px /> },
       ],
     },
     {
-      name: 'Settings',
-      icon: <FaCog />,
-      link: '/settings',
-    },
-    {
       name: 'Reports',
-      icon: <FaUser />,
+      icon: <FaDocker />,
       link: '/reports',
       subItems: [
         { name: 'Monthly', link: '/reports/monthly' },
@@ -64,7 +59,7 @@ Default.args = {
     },
     {
       name: 'Help',
-      icon: <FaCog />,
+      icon: <FaHeart />,
       link: '/help',
     },
     {
